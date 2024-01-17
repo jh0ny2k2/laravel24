@@ -1,0 +1,79 @@
+Comandos Laravel
+-----------------
+direccion proyectos en wsl ---> cd /mnt/c/users/jh0ny2k2/deskptop/daw/laravel24
+
+
+Para crear un proyecto laravel  //Deberemos irnos a la carpeta donde queremos el proyecto
+-------------------------------
+curl -s "https://laravel.build/nombreApp?with=mariadb" | bash
+
+
+
+Para activar el proyecto laravel 
+--------------------------------
+cd nombreApp
+./vendor/bin/sail up -d
+
+
+
+Para crear una migracion //Creación de base de datos
+----------------------------------------------------
+./vendor/bin/sail artisan make:migration create_nombreTabla_table
+
+------->| Para enviar lo configurado en el archivo a la base de datos
+	| -----------------------------------------------------------
+	| ./vendor/bin/sail artisan migrate
+
+
+Para crear Modelo, Seeder, Controlador y Factoria
+-------------------------------------------------
+./vendor/bin/sail artisan make:models nombreModelo -fscr
+
+
+
+Para añadir datos a la tabla anteriormente creada
+-------------------------------------------------
+- Dentro de el archivo /database/seeders/nombreModeloSeeders.php
+
+Debemos poner en el nombreModeloSeeder.php deberemos poner:
+------->| Empleado::factory()->count(50)->create();
+
+- Dentro de el archivo /database/seeders/nombreModeloSeeders.php
+
+Debemos poner en el nombreModeloFactory.php deberemos poner algo así dentro de returns:
+------->| 'nombre' => $this->faker->name,
+	| 'dni' => $this->faker->dni,
+	| 'telefono' => $this->faker->phoneNumber,
+	| 'salario' => $this->faker->randomFloat($nbMaxDecimals = NULL, $min = 0, $max = NULL)
+
+
+
+Para añadir una ruta al archivo
+-------------------------------
+Dentro de el archivo /routes/web.php
+
+Para especificar el metodo que queremos poner:
+------->| Route::get('/direccion', [nombreControlador::class, 'accionDelControlador']);
+
+No especificamos el metodo que queremos hacer:
+------->| Route::resource('direccion', nombreControlador::class);
+
+
+
+Para añadir las vistas
+----------------------
+Ruta de las vistas ---> /resource/views
+
+El nombre de la vista siempre tiene que ser ---> nombreVista.blade.php
+
+
+
+
+
+
+
+
+
+
+
+
